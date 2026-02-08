@@ -1,0 +1,57 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Lead {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  
+  // Dados Pessoais
+  name        String
+  email       String
+  phone       String
+  profession  String
+  routineType String
+  civilStatus String
+  children    String
+  location    String
+  
+  // Objetivo
+  mainGoal      String
+  whyNow        String
+  
+  // Diagnóstico
+  wakeUpTime     String
+  sleepTime      String
+  workHours      String
+  workType       String
+  energyPeak     String
+  energyLow      String
+  energyDrain    String
+  
+  // Família
+  familyTime     String
+  familyFeeling  String
+  
+  // Alimentação
+  mealsPerDay      String
+  mealsSkipped     String?
+  eatingDifficulty String
+  
+  // Treino
+  trainingFreq     String
+  trainingTime     String
+  trainingFeeling  String
+  
+  // Travas
+  mainObstacle     String
+  
+  // Extras
+  photoUrl         String?
+  
+  status String @default("NEW")
+}
