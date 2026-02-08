@@ -4,6 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Lead {
@@ -24,7 +25,7 @@ model Lead {
   mainGoal      String
   whyNow        String
   
-  // Diagnóstico
+  // Diagnï¿½stico
   wakeUpTime     String
   sleepTime      String
   workHours      String
@@ -33,11 +34,11 @@ model Lead {
   energyLow      String
   energyDrain    String
   
-  // Família
+  // Famï¿½lia
   familyTime     String
   familyFeeling  String
   
-  // Alimentação
+  // Alimentaï¿½ï¿½o
   mealsPerDay      String
   mealsSkipped     String?
   eatingDifficulty String
