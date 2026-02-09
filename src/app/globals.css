@@ -140,4 +140,38 @@
       transform: scale(1);
     }
   }
+
+  .float-bounce {
+    display: inline-block;
+    animation: float-bounce 1.6s ease-in-out infinite;
+  }
+
+  .pulse-ring {
+    animation: pulse-ring 1.8s ease-out infinite;
+  }
+
+  @keyframes float-bounce {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(4px);
+    }
+  }
+
+  @keyframes pulse-ring {
+    0% {
+      opacity: 0.6;
+      transform: scale(0.9);
+    }
+    70% {
+      opacity: 0;
+      transform: scale(1.4);
+    }
+    100% {
+      opacity: 0;
+      transform: scale(1.4);
+    }
+  }
 }

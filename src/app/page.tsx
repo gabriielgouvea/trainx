@@ -9,6 +9,39 @@ import { Check, X, Zap, Clock, TrendingUp, Brain, Shield, ArrowRight, BadgeCheck
 
 export default function Home() {
   const [isWhatsappOpen, setIsWhatsappOpen] = useState(false)
+  const avatars = [
+    "https://i.pravatar.cc/80?img=12",
+    "https://i.pravatar.cc/80?img=32",
+    "https://i.pravatar.cc/80?img=45",
+    "https://i.pravatar.cc/80?img=68",
+  ]
+  const faqItems = [
+    {
+      question: "O que recebo após a compra?",
+      answer:
+        "Você recebe acesso imediato à plataforma, materiais principais e o calendário de acompanhamento. Detalhes completos chegam por e-mail.",
+    },
+    {
+      question: "Quais formas de pagamento estão disponíveis?",
+      answer:
+        "Cartão de crédito, Pix e boleto. Em caso de parcelamento, as opções aparecem no checkout.",
+    },
+    {
+      question: "As aulas e encontros ficam gravados?",
+      answer:
+        "Sim. Caso não possa assistir ao vivo, as gravações ficam disponíveis na área do aluno.",
+    },
+    {
+      question: "Por quanto tempo tenho acesso?",
+      answer:
+        "O acesso é válido por todo o período da mentoria e inclui atualizações dos materiais liberados.",
+    },
+    {
+      question: "Existe suporte ou comunidade exclusiva?",
+      answer:
+        "Sim. Você entra em um grupo fechado de alunos e conta com suporte direto da equipe.",
+    },
+  ]
 
   useEffect(() => {
     const elements = Array.from(document.querySelectorAll("[data-animate]"))
@@ -104,9 +137,15 @@ export default function Home() {
 
             <div data-animate className="relative z-10 pt-8 flex items-center gap-4 text-sm text-neutral-500 reveal-up">
                <div className="flex -space-x-3">
-                  {[1,2,3,4].map(i => (
-                    <div key={i} className="w-10 h-10 rounded-full bg-neutral-800 border-2 border-tx-black flex items-center justify-center text-xs font-bold text-neutral-600">
-                      User
+                  {avatars.map((src, index) => (
+                    <div key={src} className="w-10 h-10 rounded-full border-2 border-tx-black overflow-hidden bg-neutral-800">
+                      <Image
+                        src={src}
+                        alt={`Avatar ${index + 1}`}
+                        width={40}
+                        height={40}
+                        className="h-full w-full object-cover"
+                      />
                     </div>
                   ))}
                </div>
@@ -262,7 +301,23 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 bg-tx-black relative overflow-hidden border-t border-neutral-900/50">
+      <div className="w-full bg-tx-black border-y border-neutral-900/50">
+        <div className="container mx-auto px-6 py-6 flex items-center justify-center">
+          <Link
+            data-animate
+            href="#vinicius"
+            className="group flex items-center gap-4 text-white text-sm font-semibold tracking-widest uppercase reveal-up"
+          >
+            Continue navegando
+            <span className="relative flex h-8 w-8 items-center justify-center rounded-full bg-tx-red text-white">
+              <span className="absolute inset-0 rounded-full ring-2 ring-tx-red/40 pulse-ring"></span>
+              <span className="float-bounce">↓</span>
+            </span>
+          </Link>
+        </div>
+      </div>
+
+      <section id="vinicius" className="py-24 bg-tx-black relative overflow-hidden border-t border-neutral-900/50">
          {/* Background Glows (Lightning effect replacement) */}
          <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-tx-red/10 blur-[100px] rounded-full pointer-events-none mix-blend-screen opacity-60"></div>
          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-tx-red/5 blur-[80px] rounded-full pointer-events-none opacity-40"></div>
@@ -360,6 +415,34 @@ export default function Home() {
                 QUERO ME TORNAR ELITE
               </Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-24 bg-tx-black border-t border-neutral-900">
+        <div className="container mx-auto px-6">
+          <div className="flex items-center justify-between gap-6 mb-10">
+            <h2 className="text-3xl md:text-4xl font-bold">Perguntas Frequentes</h2>
+            <span className="text-tx-red font-bold tracking-widest">F.A.Q</span>
+          </div>
+          <div className="space-y-4">
+            {faqItems.map((item, index) => (
+              <details
+                key={item.question}
+                data-animate
+                className="group rounded-2xl border border-neutral-800 bg-[#0f1b16]/60 p-6 text-left reveal-up"
+                style={{ animationDelay: `${index * 80}ms` }}
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 text-lg font-semibold text-neutral-200">
+                  <span>{item.question}</span>
+                  <span className="text-tx-red transition-transform duration-300 group-open:rotate-180">⌄</span>
+                </summary>
+                <div className="mt-4 text-neutral-400 leading-relaxed">
+                  {item.answer}
+                </div>
+              </details>
+            ))}
           </div>
         </div>
       </section>
